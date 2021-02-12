@@ -1,13 +1,16 @@
-import {call, put, takeLatest, all} from 'redux-saga/effects';
+import {call, put, takeLatest, all, select} from 'redux-saga/effects';
 
 import Actions from './actions';
 import {ServiceLocator, services} from './../../services/ServiceLocator';
+import {ApplicationState} from "../../store/rootReducer";
 
 const accountTransactionsService = ServiceLocator.getInstance(services.AccountTransactionsService);
 
  function* fetchTransactions(action) {
   try {
-    const data = yield call(accountTransactionsService.fetchTransactions);
+    const query = yield select((state: ApplicationState) => state.accountTransactions.searchAccount);
+
+    const data = yield call(accountTransactionsService.fetchTransactions, query);
 
     yield put(Actions['ACCOUNT_TRANSACTIONS/FETCHED_SUCCESSFULLY'](data));
   } catch ({message}) {
