@@ -4,7 +4,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 cp .env .env.tmp
-cp .env.stage.example .env
+cp .env.prod.example .env
 
 export NODE_ENV=production&&nvm exec npm run build
 
