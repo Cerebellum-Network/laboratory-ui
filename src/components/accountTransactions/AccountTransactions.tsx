@@ -1,8 +1,8 @@
 import React from 'react';
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import {AccountTransaction} from "../../models/AccountTransaction";
+import { AccountTransaction } from "../../models/AccountTransaction";
 
 interface AccountTransactionsProps {
   items: AccountTransaction[];
@@ -14,7 +14,7 @@ interface AccountTransactionsProps {
   fetchTransactions(): void;
 }
 
-const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountChanged, fetchTransactions}: AccountTransactionsProps) => {
+const AccountTransactions = ({ items, searchAccount, isLoading, onSearchAccountChanged, fetchTransactions }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
@@ -43,13 +43,13 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
             <span className="f12">SEARCH</span>
             {isLoading === true && (
               <span>
-                      <FontAwesomeIcon
-                        icon={faSpinner}
-                        className="mr-2"
-                        rotation={180}
-                        spin
-                      />
-                    </span>
+                <FontAwesomeIcon
+                  icon={faSpinner}
+                  className="mr-2"
+                  rotation={180}
+                  spin
+                />
+              </span>
             )}
           </button>
         </div>
@@ -59,40 +59,43 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
         {items.length !== 0 ? (
           <table className="table table-hover">
             <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Time stamp</th>
-              <th scope="col">Block Hash</th>
-              <th scope="col">Sender</th>
-              <th scope="col">Destination</th>
-              <th scope="col">Type</th>
-              <th scope="col">Block Number</th>
-            </tr>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Transaction Hash</th>
+                <th scope="col">Sender</th>
+                <th scope="col">method</th>
+                <th scope="col">Nonce</th>
+                <th scope="col">Success</th>
+                <th scope="col">Signature</th>
+                <th scope="col">Args</th>
+
+              </tr>
             </thead>
 
             <tbody>
-            {items.map((item: AccountTransaction, index) => {
-              return (
-                <tr key={index}>
-                  <td scope="row">{index}</td>
-                  <td>{item.timestamp}</td>
-                  <td>{item.blockHash}</td>
-                  <td>{item.senderId}</td>
-                  <td>{item.recipientId}</td>
-                  <td>{item.type}</td>
-                  <td>{item.height}</td>
-                </tr>
-              );
-            })}
+              {items.map((item: AccountTransaction, index) => {
+                return (
+                  <tr key={index}>
+                    <td scope="row">{index}</td>
+                    <td>{item.transactionHash}</td>
+                    <td>{item.senderId}</td>
+                    <td>{item.method}</td>
+                    <td>{item.nonce}</td>
+                    <td>{item.success}</td>
+                    <td>{item.signature}</td>
+                    <td>{item.args}</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         ) : (
-          <div className="p-5 f40 lato-bold my-auto col-12 bg-light">
-            <div className="d-flex justify-content-center">
-              No records found
+            <div className="p-5 f40 lato-bold my-auto col-12 bg-light">
+              <div className="d-flex justify-content-center">
+                No records found
             </div>
-          </div>
-        )}
+            </div>
+          )}
       </div>
     </>
   );

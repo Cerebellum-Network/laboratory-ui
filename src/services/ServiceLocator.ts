@@ -8,7 +8,7 @@ const services = {
 
 const httpClientInstance = (): AxiosInstance => {
   return axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
+    baseURL: 'http://localhost:2015/block-scanner',
     timeout: 15000,
     withCredentials: false,
     headers: {

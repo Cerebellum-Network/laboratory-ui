@@ -1,10 +1,11 @@
 export class AccountTransaction {
   constructor(
-    readonly timestamp: string,
-    readonly blockHash: string,
+    readonly transactionHash: string,
     readonly senderId: string,
-    readonly recipientId: string,
-    readonly type: string,
-    readonly height: string,
+    readonly signature: string,
+    readonly nonce: string,
+    readonly method: string,
+    readonly args: string,
+    readonly success: string
   ) {}
 }

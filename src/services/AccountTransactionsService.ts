@@ -11,15 +11,17 @@ class AccountTransactionsService implements AccountTransactionsServiceInterface 
   }
 
   fetchTransactions = async (query: string) => {
-    const transactions = (await this.httpClient.get(`/account-transactions/${query}`)).data;
-
-    return transactions.map(({timestamp, blockHash, authorPublicKey, destinationPublicKey}) => (new AccountTransaction(
-      timestamp,
-      blockHash,
-      authorPublicKey,
-      destinationPublicKey,
-      '',
-      ','
+    const transactions = (await this.httpClient.get(`account-transaction/${query}`)).data;
+    const { data, count } = transactions;
+    console.log(`data: ${data}`);
+    return data.map(({transactionHash, senderId, signature, args, nonce, method, success}) => (new AccountTransaction(
+       transactionHash,
+       senderId,
+       signature,
+      nonce,
+      method,
+       args,
+       success
     )));
   };
 }
