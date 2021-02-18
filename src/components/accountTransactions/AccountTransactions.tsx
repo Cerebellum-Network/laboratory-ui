@@ -3,18 +3,32 @@ import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {AccountTransaction} from "../../models/AccountTransaction";
+import Pagination from "./Pagination";
+
+const txOnPage = +process.env.REACT_APP_ROWS_ON_PAGE;
 
 interface AccountTransactionsProps {
   items: AccountTransaction[];
+  itemsTotal: number;
+  currentPage: number;
   searchAccount: string;
   isLoading: boolean;
 
   onSearchAccountChanged(value: string): void;
 
-  fetchTransactions(): void;
+  fetchTransactions(page: number): void;
 }
 
-const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountChanged, fetchTransactions}: AccountTransactionsProps) => {
+const AccountTransactions = (
+  {
+    items,
+    searchAccount,
+    isLoading,
+    onSearchAccountChanged,
+    fetchTransactions,
+    itemsTotal,
+    currentPage,
+  }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
@@ -37,8 +51,8 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
             className="btn btn-outline-secondary"
             type="button"
             id="button-addon2"
-            onClick={fetchTransactions}
-            disabled={searchAccount === "" ? true : false}
+            onClick={fetchTransactions.bind(this, currentPage)}
+            disabled={searchAccount === ""}
           >
             <span className="f12">SEARCH</span>
             {isLoading === true && (
@@ -57,33 +71,40 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
 
       <div className="table-responsive">
         {items.length !== 0 ? (
-          <table className="table table-hover">
-            <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Transaction Hash</th>
-              <th scope="col">Sender</th>
-              <th scope="col">Destination</th>
-              <th scope="col">Method</th>
-              <th scope="col">Timestamp</th>
-            </tr>
-            </thead>
+          <>
+            <table className="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Transaction Hash</th>
+                <th scope="col">Sender</th>
+                <th scope="col">Destination</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Method</th>
+              </tr>
+              </thead>
 
-            <tbody>
-            {items.map((item: AccountTransaction, index) => {
-              return (
-                <tr key={index}>
-                  <td scope="row">{index}</td>
-                  <td>{item.transactionHash}</td>
-                  <td>{item.senderId}</td>
-                  <td>{item.destinationId}</td>
-                  <td>{item.method}</td>
-                  <td>{item.timestamp}</td>
-                </tr>
-              );
-            })}
-            </tbody>
-          </table>
+              <tbody>
+              {items.map((item: AccountTransaction, index) => {
+                return (
+                  <tr key={index}>
+                    <td scope="row">{index + txOnPage * (currentPage - 1) + 1}</td>
+                    <td>{item.transactionHash}</td>
+                    <td>{item.senderId}</td>
+                    <td>{item.destinationId}</td>
+                    <td>{item.timestamp}</td>
+                    <td>{item.method}</td>
+                  </tr>
+                );
+              })}
+              </tbody>
+            </table>
+            <Pagination
+              selectPage={fetchTransactions}
+              total={itemsTotal}
+              current={currentPage}
+            />
+          </>
         ) : (
           <div className="p-5 f40 lato-bold my-auto col-12 bg-light">
             <div className="d-flex justify-content-center">

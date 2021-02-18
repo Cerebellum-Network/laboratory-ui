@@ -6,9 +6,11 @@ import {AccountTransaction} from "../../models/AccountTransaction";
 
 export interface AccountTransactionsState {
   items: AccountTransaction[] | null,
+  itemsTotal: number,
   searchAccount: string,
   isLoading: boolean,
   errorMessage: string,
+  currentPage: number,
 }
 
 const initialState: AccountTransactionsState = {
@@ -16,6 +18,8 @@ const initialState: AccountTransactionsState = {
   errorMessage: '',
   isLoading: false,
   searchAccount: '',
+  currentPage: 1,
+  itemsTotal: 0,
 };
 
 const accountTransactionsReducer = handleActions({
@@ -23,6 +27,7 @@ const accountTransactionsReducer = handleActions({
     return update(state, {
       $merge: {
         isLoading: true,
+        currentPage: action.payload,
       }
     });
   },
@@ -36,8 +41,9 @@ const accountTransactionsReducer = handleActions({
   [Actions["ACCOUNT_TRANSACTIONS/FETCHED_SUCCESSFULLY"]]: (state: AccountTransactionsState, action: Action<any>) => {
     return update(state, {
       $merge: {
-        items: action.payload,
+        items: action.payload.items,
         isLoading: false,
+        itemsTotal: action.payload.itemsTotal,
       }
     });
   },

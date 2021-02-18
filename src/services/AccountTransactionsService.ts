@@ -1,9 +1,7 @@
 import {AxiosInstance} from "axios";
 import {AccountTransaction} from "../models/AccountTransaction";
-
-export interface AccountTransactionsServiceInterface {
-  fetchTransactions(query: string): Promise<any>;
-}
+import {AccountTransactionsServiceInterface} from "./AccountTransactionsServiceInterface";
+import {AccountTransactionsWithTotal} from "../models/AccountTransactionsWithTotal";
 
 class AccountTransactionsService implements AccountTransactionsServiceInterface {
   constructor(public httpClient: AxiosInstance) {
@@ -22,17 +20,20 @@ class AccountTransactionsService implements AccountTransactionsServiceInterface 
     return result;
   }
 
-  fetchTransactions = async (query: string): Promise<AccountTransaction[]> => {
-    const transactions = (await this.httpClient.get(`/account-transactions/${query}`)).data.data;
+  fetchTransactions = async (query: string, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
+    const transactions = (await this.httpClient.get(`/account-transactions/${query}?offset=${offset}&limit=${limit}`)).data;
 
-    return transactions.map(({ senderId, transactionHash, transactionIndex, method, args}) => (new AccountTransaction(
-      senderId,
-      this.getDestination(method, args),
-      transactionHash,
-      transactionIndex,
-      method,
-      (new Date()).toString(), // TODO: get real timestamp
-    )));
+    return new AccountTransactionsWithTotal(
+      transactions.data.map(({ senderId, transactionHash, transactionIndex, method, args, timestamp}) => (new AccountTransaction(
+        senderId,
+        this.getDestination(method, args),
+        transactionHash,
+        transactionIndex,
+        method,
+        timestamp,
+      ))),
+      transactions.count,
+    );
   };
 }
 
