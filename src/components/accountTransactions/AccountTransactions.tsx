@@ -61,12 +61,11 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
             <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Time stamp</th>
-              <th scope="col">Block Hash</th>
+              <th scope="col">Transaction Hash</th>
               <th scope="col">Sender</th>
               <th scope="col">Destination</th>
-              <th scope="col">Type</th>
-              <th scope="col">Block Number</th>
+              <th scope="col">Method</th>
+              <th scope="col">Timestamp</th>
             </tr>
             </thead>
 
@@ -75,12 +74,11 @@ const AccountTransactions = ({items, searchAccount, isLoading, onSearchAccountCh
               return (
                 <tr key={index}>
                   <td scope="row">{index}</td>
-                  <td>{item.timestamp}</td>
-                  <td>{item.blockHash}</td>
+                  <td>{item.transactionHash}</td>
                   <td>{item.senderId}</td>
-                  <td>{item.recipientId}</td>
-                  <td>{item.type}</td>
-                  <td>{item.height}</td>
+                  <td>{item.destinationId}</td>
+                  <td>{item.method}</td>
+                  <td>{item.timestamp}</td>
                 </tr>
               );
             })}
