@@ -13,10 +13,12 @@ import {
 } from "react-router-dom";
 import createSagaMiddleware from 'redux-saga';
 import accountTransactionsSaga from './modules/accountTransactions/sagas';
+import friendBotSaga from './modules/friendBot/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, applyMiddleware(logger, sagaMiddleware));
 sagaMiddleware.run(accountTransactionsSaga);
+sagaMiddleware.run(friendBotSaga);
 
 ReactDOM.render(
   <React.StrictMode>

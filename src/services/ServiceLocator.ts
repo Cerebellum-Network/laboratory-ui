@@ -1,9 +1,9 @@
 import axios, {AxiosInstance} from 'axios';
 
-import AccountTransactionsService from "./AccountTransactionsService";
+import LaboratoryApiService from "./LaboratoryApiService";
 
 const services = {
-  AccountTransactionsService: 'AccountTransactionsService',
+  LaboratoryApiService: 'LaboratoryApiService',
 };
 
 const httpClientInstance = (): AxiosInstance => {
@@ -20,8 +20,8 @@ const httpClientInstance = (): AxiosInstance => {
 class ServiceLocator {
   static getInstance(serviceName: string) {
     switch (serviceName) {
-      case services.AccountTransactionsService: {
-        return new AccountTransactionsService(httpClientInstance());
+      case services.LaboratoryApiService: {
+        return new LaboratoryApiService(httpClientInstance());
       }
 
       default:

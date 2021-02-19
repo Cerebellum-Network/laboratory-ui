@@ -1,16 +1,16 @@
 import {AxiosInstance} from "axios";
 import {AccountTransaction} from "../models/AccountTransaction";
-import {AccountTransactionsServiceInterface} from "./AccountTransactionsServiceInterface";
+import {LaboratoryApiServiceInterface} from "./LaboratoryApiServiceInterface";
 import {AccountTransactionsWithTotal} from "../models/AccountTransactionsWithTotal";
 
-class AccountTransactionsService implements AccountTransactionsServiceInterface {
+class LaboratoryApiService implements LaboratoryApiServiceInterface {
   constructor(public httpClient: AxiosInstance) {
     this.httpClient = httpClient;
   }
 
-  getDestination(method: string, args: string) {
+  private getDestination(method: string, args: string) {
     let result = '';
-    switch(method) {
+    switch (method) {
       case 'balances.transferKeepAlive': {
         const parts = args.split(',');
         result = parts[0];
@@ -21,10 +21,10 @@ class AccountTransactionsService implements AccountTransactionsServiceInterface 
   }
 
   fetchTransactions = async (query: string, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
-    const transactions = (await this.httpClient.get(`/account-transactions/${query}?offset=${offset}&limit=${limit}`)).data;
+    const transactions = (await this.httpClient.get(`/block-scanner/account-transactions/${query}?offset=${offset}&limit=${limit}`)).data;
 
     return new AccountTransactionsWithTotal(
-      transactions.data.map(({ senderId, transactionHash, transactionIndex, method, args, timestamp}) => (new AccountTransaction(
+      transactions.data.map(({senderId, transactionHash, transactionIndex, method, args, timestamp}) => (new AccountTransaction(
         senderId,
         this.getDestination(method, args),
         transactionHash,
@@ -35,6 +35,10 @@ class AccountTransactionsService implements AccountTransactionsServiceInterface 
       transactions.count,
     );
   };
+
+  postFriendBotAssetRequest = async (destination: string) => {
+    return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
+  }
 }
 
-export default AccountTransactionsService;
+export default LaboratoryApiService;

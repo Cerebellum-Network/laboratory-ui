@@ -5,7 +5,7 @@ import {ServiceLocator, services} from './../../services/ServiceLocator';
 import {ApplicationState} from "../../store/rootReducer";
 import {AccountTransactionsWithTotal} from "../../models/AccountTransactionsWithTotal";
 
-const accountTransactionsService = ServiceLocator.getInstance(services.AccountTransactionsService);
+const accountTransactionsService = ServiceLocator.getInstance(services.LaboratoryApiService);
 
  function* fetchTransactions(action) {
   try {
