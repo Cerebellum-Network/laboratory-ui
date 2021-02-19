@@ -22,7 +22,7 @@ const App = () => {
               height="30"
               className="d-inline-block align-top"
             />{" "}
-            Cere Network
+            Cere Network Laboratory
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
