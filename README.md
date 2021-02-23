@@ -1,6 +1,6 @@
 # Laboratory UI application
 
-### Overview
+## Overview
 This application is supposed to be used for any Substrate-based Network. 
 It provides the following features:
 - Block Scanner - get list of transactions by public key
@@ -8,7 +8,7 @@ It provides the following features:
 
 This application depends on backend API, which can be found [here](https://github.com/Cerebellum-Network/laboratory-api).
 
-# Quick Start
+## Quick Start
 ### Prepare ENV variables
 
 Copy `.env.example` to `.env` file and provide ENV variables.
@@ -19,7 +19,7 @@ cp .env.example .env
 ```bash
 nvm exec npm start
 ```
-# Packaging
+## Packaging
 ### How to deploy to AWS
 * Copy `deploy.sh.example` to `deploy.sh`
 * Make it executable:
@@ -33,5 +33,5 @@ chmod 777 ./deploy.sh
 ./deploy.sh
 ```
 
-# License 
+## License 
 License info can be found in the [LICENSE section](./docs/LICENSE.md).
