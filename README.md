@@ -1,15 +1,35 @@
-# Block Scanner application
+# Laboratory UI application
 
-This application is supposed to be used to work work with Block Scanner API
+This application is supposed to be used for any Substrate-based Network. 
+It provides the following features:
+- Block Scanner - get list of transactions by public key
+- Friendbot/Faucet - send native tokens for Testnet on demand
 
+This application depends on backend API, which can be found [here](https://github.com/Cerebellum-Network/laboratory-api).
+
+# Quick Start
 ### Prepare ENV variables
 
 Copy `.env.example` to `.env` file and provide ENV variables.
 ```bash
 cp .env.example .env
 ```
-Quick Start
-# Quick Start
+### Run the application
 ```bash
 nvm exec npm start
 ```
+# How to deploy to AWS
+* Copy `deploy.sh.example` to `deploy.sh`
+* Make it executable:
+```bash
+chmod 777 ./deploy.sh
+```
+* Replace `YOUR_BUCKET_HERE` with your bucket name
+* Replace `YOUR_DISTRIBUTION_ID` with your distribution ID
+* Run deployment: 
+```bash
+./deploy.sh
+```
+
+# License 
+License info can be found in the [LICENSE section](./docs/LICENSE.md).
