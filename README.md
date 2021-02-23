@@ -18,7 +18,8 @@ cp .env.example .env
 ```bash
 nvm exec npm start
 ```
-# How to deploy to AWS
+# Packaging
+### How to deploy to AWS
 * Copy `deploy.sh.example` to `deploy.sh`
 * Make it executable:
 ```bash
