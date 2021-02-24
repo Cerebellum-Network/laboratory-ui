@@ -24,7 +24,21 @@ function* fetchTransactions(action) {
         items: itemsData.data,
         itemsTotal: itemsData.total,
         balance: itemsData.balance,
-        block: itemsData.block,
+      }),
+    );
+  } catch ({message}) {
+    console.error(message);
+
+    yield put(Actions['ACCOUNT_TRANSACTIONS/FETCHED_ERROR'](message));
+  }
+}
+
+function* fetchLastSyncedBlock(action) {
+  try {
+    const block = yield call(accountTransactionsService.fetchLastSyncedBlock);
+    yield put(
+      Actions['ACCOUNT_TRANSACTIONS/FETCHED_LAST_BLOCK_SUCCESSFULLY']({
+        block: block.latestBlock,
       }),
     );
   } catch ({message}) {
@@ -38,6 +52,9 @@ function* fetchTransactionsSaga() {
   yield takeLatest(Actions['ACCOUNT_TRANSACTIONS/FETCH'], fetchTransactions);
 }
 
+function* fetchLastSyncedBlockSaga() {
+  yield takeLatest(Actions['ACCOUNT_TRANSACTION/LAST_SYNCED_BLOCK'], fetchLastSyncedBlock);
+}
 export default function* accountTransactionsSaga() {
-  yield all([fetchTransactionsSaga()]);
+  yield all([fetchTransactionsSaga(), fetchLastSyncedBlockSaga()]);
 }

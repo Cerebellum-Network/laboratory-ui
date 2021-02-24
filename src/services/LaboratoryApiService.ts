@@ -43,6 +43,11 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     );
   };
 
+  fetchLastSyncedBlock = async (): Promise<any> => {
+    const block = (await this.httpClient.get(`/block-scanner/latest-block`)).data;
+    return block;
+
+  }
   postFriendBotAssetRequest = async (destination: string) => {
     return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
   };

@@ -48,6 +48,13 @@ const accountTransactionsReducer = handleActions(
         },
       });
     },
+    [Actions['ACCOUNT_TRANSACTIONS/FETCHED_LAST_BLOCK_SUCCESSFULLY']]: (state: AccountTransactionsState, action: Action<any>) => {
+      return update(state, {
+        $merge: {
+          block: action.payload.block
+        }
+      })
+    },
     [Actions['ACCOUNT_TRANSACTIONS/FETCHED_SUCCESSFULLY']]: (state: AccountTransactionsState, action: Action<any>) => {
       return update(state, {
         $merge: {
@@ -55,7 +62,6 @@ const accountTransactionsReducer = handleActions(
           isLoading: false,
           itemsTotal: action.payload.itemsTotal,
           balance: action.payload.balance,
-          block: action.payload.block,
           success: true,
         },
       });

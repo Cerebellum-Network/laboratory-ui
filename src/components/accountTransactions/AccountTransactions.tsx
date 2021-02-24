@@ -15,8 +15,8 @@ interface AccountTransactionsProps {
   searchAccount: string;
   isLoading: boolean;
   success: boolean;
-  block: number;
-
+  block: number,
+  
   fetchLastSyncedBlock(): void;
 
   onSearchAccountChanged(value: string): void;
@@ -35,19 +35,23 @@ const AccountTransactions = (
     itemsTotal,
     currentPage,
     success,
-    block,
     fetchLastSyncedBlock,
+    block,
   }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
 
   useEffect(() => {
-    //fetchLastSyncedBlock();
+    fetchLastSyncedBlock();
   }, []);
 
   return (
     <>
+      <div className="block">
+        Last synced block is {block}.
+        <br></br>
+      </div>
       <form autoComplete="off">
         <div className="input-group mb-3">
           <input
@@ -83,7 +87,7 @@ const AccountTransactions = (
       </form>
       <div className="table-responsive">
         {
-          success === true && (<> Your account balance is {balance} and last synced block is {block}</>)
+          success === true && (<> <div className="balance">Your account balance is {balance}</div> </>)
         }
         {items.length !== 0 ? (
           <>

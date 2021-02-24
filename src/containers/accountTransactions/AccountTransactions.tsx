@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     fetchTransactions: (page: number) => dispatch(Actions["ACCOUNT_TRANSACTIONS/FETCH"](page)),
     onSearchAccountChanged: (value) => dispatch(Actions["ACCOUNT_TRANSACTIONS/ON_SEARCH_ACCOUNT_CHANGED"](value)),
+    fetchLastSyncedBlock: () => dispatch(Actions["ACCOUNT_TRANSACTION/LAST_SYNCED_BLOCK"]()),
   };
 };
 
