@@ -3,22 +3,20 @@ import {call, put, takeLatest, all, select} from 'redux-saga/effects';
 import Actions from './actions';
 import {ServiceLocator, services} from './../../services/ServiceLocator';
 import {ApplicationState} from "../../store/rootReducer";
-import {AccountTransactionsWithTotal} from "../../models/AccountTransactionsWithTotal";
 
 const laboratoryApiService = ServiceLocator.getInstance(services.LaboratoryApiService);
 
- function* submitAssetRequest(action) {
+ function* submitAssetRequest() {
   try {
     const query = yield select((state: ApplicationState) => state.friendBot.accountKey);
 
-    const itemsData: AccountTransactionsWithTotal = yield call(laboratoryApiService.postFriendBotAssetRequest, query);
+    yield call(laboratoryApiService.postFriendBotAssetRequest, query);
 
     yield put(Actions['FRIEND_BOT/SUBMIT_SUCCESSFULLY']());
-  } catch ({message}) {
-    // TODO: Add logger
+  } catch ({message, response}) {
     console.error(message);
 
-    yield put(Actions['FRIEND_BOT/SUBMIT_ERROR'](message));
+    yield put(Actions['FRIEND_BOT/SUBMIT_ERROR'](response && response.data && response.data.message || message));
   }
 }
 

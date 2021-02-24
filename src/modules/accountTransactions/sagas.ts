@@ -28,7 +28,6 @@ function* fetchTransactions(action) {
       }),
     );
   } catch ({message}) {
-    // TODO: Add logger
     console.error(message);
 
     yield put(Actions['ACCOUNT_TRANSACTIONS/FETCHED_ERROR'](message));
