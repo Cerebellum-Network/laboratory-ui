@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import routes from './routes/routes';
-import {Navbar, Nav} from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import logoImg from "./assets/logo.png";
 
 const App = () => {
@@ -28,6 +28,7 @@ const App = () => {
             <Nav className="mr-auto">
               <Nav.Link href={`#${routes.ACCOUNT_TRANSACTIONS.link}`}>Block Scanner</Nav.Link>
               <Nav.Link href={`#${routes.FRIEND_BOT.link}`}>FriendBot</Nav.Link>
+              <Nav.Link href={`#${routes.BALANCE.link}`}>Balance</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -41,13 +42,13 @@ const App = () => {
                   <div className='container-fluid'>
                     <h3>{routes[routeKey].title}</h3>
                     <div className="p-3 mb-2 bg-light text-dark">{routes[routeKey].description}</div>
-                    <Component/>
+                    <Component />
                   </div>
                 </Route>
               );
             })
           }
-          <Redirect from="/" to={routes.ACCOUNT_TRANSACTIONS.link}/>
+          <Redirect from="/" to={routes.ACCOUNT_TRANSACTIONS.link} />
         </Switch>
       </div>
     </div>

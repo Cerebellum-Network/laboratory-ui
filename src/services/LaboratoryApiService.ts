@@ -39,6 +39,10 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   postFriendBotAssetRequest = async (destination: string) => {
     return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
   }
+
+  getBalance = async (address: string) => {
+    return (await this.httpClient.get(`/block-scanner/balance/${address}`)).data;
+  }
 }
 
 export default LaboratoryApiService;
