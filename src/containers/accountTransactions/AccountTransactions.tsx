@@ -8,11 +8,14 @@ import {Dispatch, AnyAction} from "redux";
 const mapStateToProps = (state: RootState) => {
   return {
     items: state.accountTransactions.items,
+    balance: state.accountTransactions.balance,
     itemsTotal: state.accountTransactions.itemsTotal,
     searchAccount: state.accountTransactions.searchAccount,
     isLoading: state.accountTransactions.isLoading,
     errorMessage: state.accountTransactions.errorMessage,
     currentPage: state.accountTransactions.currentPage,
+    success: state.accountTransactions.success,
+    block: state.accountTransactions.block,
   }
 };
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {

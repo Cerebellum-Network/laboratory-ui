@@ -1,7 +1,7 @@
-import {AxiosInstance} from "axios";
-import {AccountTransaction} from "../models/AccountTransaction";
-import {LaboratoryApiServiceInterface} from "./LaboratoryApiServiceInterface";
-import {AccountTransactionsWithTotal} from "../models/AccountTransactionsWithTotal";
+import {AxiosInstance} from 'axios';
+import {AccountTransaction} from '../models/AccountTransaction';
+import {LaboratoryApiServiceInterface} from './LaboratoryApiServiceInterface';
+import {AccountTransactionsWithTotal} from '../models/AccountTransactionsWithTotal';
 
 class LaboratoryApiService implements LaboratoryApiServiceInterface {
   constructor(public httpClient: AxiosInstance) {
@@ -21,28 +21,35 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   }
 
   fetchTransactions = async (query: string, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
-    const transactions = (await this.httpClient.get(`/block-scanner/account-transactions/${query}?offset=${offset}&limit=${limit}`)).data;
+    const transactions = (
+      await this.httpClient.get(`/block-scanner/account-transactions/${query}?offset=${offset}&limit=${limit}`)
+    ).data;
 
     return new AccountTransactionsWithTotal(
-      transactions.data.map(({senderId, transactionHash, transactionIndex, method, args, timestamp}) => (new AccountTransaction(
-        senderId,
-        this.getDestination(method, args),
-        transactionHash,
-        transactionIndex,
-        method,
-        timestamp,
-      ))),
+      transactions.data.map(
+        ({senderId, transactionHash, transactionIndex, method, args, timestamp}) =>
+          new AccountTransaction(
+            senderId,
+            this.getDestination(method, args),
+            transactionHash,
+            transactionIndex,
+            method,
+            timestamp,
+          ),
+      ),
+      transactions.balance,
       transactions.count,
+      transactions.block,
     );
   };
 
   postFriendBotAssetRequest = async (destination: string) => {
     return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
-  }
+  };
 
-  getBalance = async (address: string) => {
-    return (await this.httpClient.get(`/block-scanner/balance/${address}`)).data;
-  }
+  getBlockNumber = async () => {
+    return (await this.httpClient.get(`/block-scanner/latest-block`)).data;
+  };
 }
 
 export default LaboratoryApiService;

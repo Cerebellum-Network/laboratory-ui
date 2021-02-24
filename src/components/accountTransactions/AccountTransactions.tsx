@@ -9,10 +9,13 @@ const txOnPage = +process.env.REACT_APP_ROWS_ON_PAGE;
 
 interface AccountTransactionsProps {
   items: AccountTransaction[];
+  balance: string;
   itemsTotal: number;
   currentPage: number;
   searchAccount: string;
   isLoading: boolean;
+  success: boolean;
+  block: number;
 
   onSearchAccountChanged(value: string): void;
 
@@ -22,12 +25,15 @@ interface AccountTransactionsProps {
 const AccountTransactions = (
   {
     items,
+    balance,
     searchAccount,
     isLoading,
     onSearchAccountChanged,
     fetchTransactions,
     itemsTotal,
     currentPage,
+    success,
+    block,
   }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
@@ -68,12 +74,14 @@ const AccountTransactions = (
           </button>
         </div>
       </form>
-
       <div className="table-responsive">
+        {
+          success === true && (<> Your account balance is {balance} and last synced block is {block}</>)
+        }
         {items.length !== 0 ? (
           <>
             <table className="table table-hover">
-              <thead>
+              <thead >
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Transaction Hash</th>
