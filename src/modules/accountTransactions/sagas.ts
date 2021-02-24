@@ -17,7 +17,6 @@ const accountTransactionsService = ServiceLocator.getInstance(services.Laborator
 
     yield put(Actions['ACCOUNT_TRANSACTIONS/FETCHED_SUCCESSFULLY']({items: itemsData.data, itemsTotal: itemsData.total}));
   } catch ({message}) {
-    // TODO: Add logger
     console.error(message);
 
     yield put(Actions['ACCOUNT_TRANSACTIONS/FETCHED_ERROR'](message));
