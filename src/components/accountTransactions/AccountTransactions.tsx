@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -17,6 +17,8 @@ interface AccountTransactionsProps {
   success: boolean;
   block: number;
 
+  fetchLastSyncedBlock(): void;
+
   onSearchAccountChanged(value: string): void;
 
   fetchTransactions(page: number): void;
@@ -34,10 +36,15 @@ const AccountTransactions = (
     currentPage,
     success,
     block,
+    fetchLastSyncedBlock,
   }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
+
+  useEffect(() => {
+    //fetchLastSyncedBlock();
+  }, []);
 
   return (
     <>
