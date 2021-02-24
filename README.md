@@ -8,6 +8,11 @@ It provides the following features:
 
 This application depends on backend API, which can be found [here](https://github.com/Cerebellum-Network/laboratory-api).
 
+## Release notes
+### v1.0.0
+* Added Block Scanner app
+* Added FriendBot app
+
 ## Quick Start
 ### Prepare ENV variables
 
