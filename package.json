@@ -1,6 +1,6 @@
 {
-  "name": "block-explorer",
-  "version": "0.1.0",
+  "name": "laboratory-ui",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
