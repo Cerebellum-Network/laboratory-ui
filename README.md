@@ -10,7 +10,12 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
+* 
+
+### v1.0.1
 * Updated license
+* Added Last Synced Block
+* Added user balance block
 
 ### v1.0.0
 * Added Block Scanner app
