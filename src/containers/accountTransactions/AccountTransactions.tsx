@@ -15,6 +15,7 @@ const mapStateToProps = (state: RootState) => {
     currentPage: state.accountTransactions.currentPage,
   }
 };
+
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     fetchTransactions: (page: number) => dispatch(Actions["ACCOUNT_TRANSACTIONS/FETCH"](page)),
