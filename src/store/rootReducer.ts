@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 import accountTransactions, {AccountTransactionsState} from './../modules/accountTransactions/reducers';
-import friendBot, {FriendBotState} from "../modules/friendBot/reducers";
+import friendBot, {FriendBotState} from '../modules/friendBot/reducers';
 
 export interface ApplicationState {
   accountTransactions: AccountTransactionsState;

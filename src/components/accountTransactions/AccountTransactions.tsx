@@ -4,6 +4,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {AccountTransaction} from "../../models/AccountTransaction";
 import Pagination from "./Pagination";
+import LastBlock from "../../containers/accountTransactions/LastBlock";
+import Balance from '../../containers/accountTransactions/Balance';
 
 const txOnPage = +process.env.REACT_APP_ROWS_ON_PAGE;
 
@@ -35,6 +37,7 @@ const AccountTransactions = (
 
   return (
     <>
+      <LastBlock />
       <form autoComplete="off">
         <div className="input-group mb-3">
           <input
@@ -68,12 +71,12 @@ const AccountTransactions = (
           </button>
         </div>
       </form>
-
       <div className="table-responsive">
+        <Balance />
         {items.length !== 0 ? (
           <>
             <table className="table table-hover">
-              <thead>
+              <thead >
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Transaction Hash</th>
