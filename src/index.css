@@ -10,16 +10,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.block {
-  font-size: 24px;
-  text-align: center;
-  padding: 4px;
-  margin: 24px;
-}
-
-.balance {
-  font-size: 20px;
-  text-align: center;
-  padding: 2px;
-  margin: 4px;
-}

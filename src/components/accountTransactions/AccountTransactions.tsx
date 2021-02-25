@@ -48,7 +48,7 @@ const AccountTransactions = (
 
   return (
     <>
-      <div className="block">
+      <div className="text-center lead m-3">
         Last synced block is {block}.
         <br></br>
       </div>
@@ -87,7 +87,7 @@ const AccountTransactions = (
       </form>
       <div className="table-responsive">
         {
-          success === true && (<> <div className="balance">Your account balance is {balance}</div> </>)
+          success === true && (<div className=" text-center fs-5 pb-4">Your account balance is {balance}</div>)
         }
         {items.length !== 0 ? (
           <>
