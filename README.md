@@ -9,6 +9,9 @@ It provides the following features:
 This application depends on backend API, which can be found [here](https://github.com/Cerebellum-Network/laboratory-api).
 
 ## Release notes
+### vNext
+* Updated license
+
 ### v1.0.0
 * Added Block Scanner app
 * Added FriendBot app
@@ -39,4 +42,4 @@ chmod 777 ./deploy.sh
 ```
 
 ## License 
-License info can be found in the [LICENSE section](./docs/LICENSE.md).
+License info can be found in the [LICENSE section](./LICENSE.md).
