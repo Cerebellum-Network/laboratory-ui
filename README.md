@@ -10,7 +10,7 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
-* 
+* Updated deployment script
 
 ### v1.0.1
 * Updated license
