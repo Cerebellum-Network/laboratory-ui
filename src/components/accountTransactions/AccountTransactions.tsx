@@ -1,23 +1,20 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {AccountTransaction} from "../../models/AccountTransaction";
 import Pagination from "./Pagination";
+import LastBlock from "../../containers/accountTransactions/LastBlock";
+import Balance from '../../containers/accountTransactions/Balance';
 
 const txOnPage = +process.env.REACT_APP_ROWS_ON_PAGE;
 
 interface AccountTransactionsProps {
   items: AccountTransaction[];
-  balance: string;
   itemsTotal: number;
   currentPage: number;
   searchAccount: string;
   isLoading: boolean;
-  success: boolean;
-  block: number,
-  
-  fetchLastSyncedBlock(): void;
 
   onSearchAccountChanged(value: string): void;
 
@@ -27,31 +24,20 @@ interface AccountTransactionsProps {
 const AccountTransactions = (
   {
     items,
-    balance,
     searchAccount,
     isLoading,
     onSearchAccountChanged,
     fetchTransactions,
     itemsTotal,
     currentPage,
-    success,
-    fetchLastSyncedBlock,
-    block,
   }: AccountTransactionsProps) => {
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
 
-  useEffect(() => {
-    fetchLastSyncedBlock();
-  }, []);
-
   return (
     <>
-      <div className="text-center lead m-3">
-        Last synced block is {block}.
-        <br></br>
-      </div>
+      <LastBlock />
       <form autoComplete="off">
         <div className="input-group mb-3">
           <input
@@ -86,9 +72,7 @@ const AccountTransactions = (
         </div>
       </form>
       <div className="table-responsive">
-        {
-          success === true && (<div className=" text-center fs-5 pb-4">Your account balance is {balance}</div>)
-        }
+        <Balance />
         {items.length !== 0 ? (
           <>
             <table className="table table-hover">
