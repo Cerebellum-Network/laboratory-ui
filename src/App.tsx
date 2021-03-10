@@ -18,6 +18,7 @@ const App = () => {
             <Nav className="mr-auto">
               <Nav.Link href={`#${routes.ACCOUNT_TRANSACTIONS.link}`}>Block Scanner</Nav.Link>
               <Nav.Link href={`#${routes.FRIEND_BOT.link}`}>FriendBot</Nav.Link>
+              <Nav.Link href={`#${routes.PEERS.link}`}>Peers</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

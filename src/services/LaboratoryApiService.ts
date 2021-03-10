@@ -55,6 +55,12 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   getBlockNumber = async () => {
     return (await this.httpClient.get(`/block-scanner/latest-block`)).data;
   };
+
+  getPeer = async () => {
+    const peer = (await this.httpClient.get(`/peer/details/TestNet`)).data;
+    console.log(peer);
+    return peer;
+  }
 }
 
 export default LaboratoryApiService;
