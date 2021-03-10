@@ -9,8 +9,9 @@ const laboratoryApiService = ServiceLocator.getInstance(services.LaboratoryApiSe
  function* submitAssetRequest() {
   try {
     const query = yield select((state: ApplicationState) => state.friendBot.accountKey);
+    const network = yield select((state: ApplicationState) => state.friendBot.network);
 
-    yield call(laboratoryApiService.postFriendBotAssetRequest, query);
+    yield call(laboratoryApiService.postFriendBotAssetRequest, query, network);
 
     yield put(Actions['FRIEND_BOT/SUBMIT_SUCCESSFULLY']());
   } catch ({message, response}) {

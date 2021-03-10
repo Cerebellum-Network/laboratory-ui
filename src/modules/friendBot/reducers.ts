@@ -5,6 +5,7 @@ import Actions from './actions';
 
 export interface FriendBotState {
   accountKey: string,
+  network: string,
   isLoading: boolean,
   errorMessage: string,
   success: boolean | null,
@@ -15,6 +16,7 @@ const initialState: FriendBotState = {
   isLoading: false,
   accountKey: '',
   success: null,
+  network: 'TestNet'
 };
 
 const friendBotReducer = handleActions({
@@ -36,6 +38,15 @@ const friendBotReducer = handleActions({
       }
     });
   },
+  [Actions["FRIEND_BOT/NETWORK_CHANGED"]]: (state: FriendBotState, action: Action<any>) => {
+    return update(state, {
+      $merge: {
+        network: action.payload,
+        errorMessage: initialState.errorMessage,
+        success: initialState.success,
+      }
+    });
+  },
   [Actions["FRIEND_BOT/SUBMIT_SUCCESSFULLY"]]: (state: FriendBotState, action: Action<any>) => {
     return update(state, {
       $merge: {
@@ -52,6 +63,7 @@ const friendBotReducer = handleActions({
       }
     });
   },
+
 }, initialState);
 
 export default friendBotReducer;

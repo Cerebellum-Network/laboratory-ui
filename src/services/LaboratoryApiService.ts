@@ -48,8 +48,8 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     return block;
 
   }
-  postFriendBotAssetRequest = async (destination: string) => {
-    return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
+  postFriendBotAssetRequest = async (destination: string, network: string) => {
+    return (await this.httpClient.post(`/friend-bot/request-assets`, {destination, network})).data;
   };
 
   getBlockNumber = async () => {
