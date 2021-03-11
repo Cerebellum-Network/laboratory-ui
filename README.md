@@ -10,6 +10,9 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
+* 
+
+### v1.1.0
 * Updated deployment script
 * Added peers dashboard
 
