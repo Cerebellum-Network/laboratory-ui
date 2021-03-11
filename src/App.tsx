@@ -4,6 +4,7 @@ import {Redirect, Switch, Route} from 'react-router-dom';
 import routes from './routes/routes';
 import {Navbar, Nav} from 'react-bootstrap';
 import logoImg from './assets/logo.png';
+import Network from './containers/network/network';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        {/* <Network/> */}
         <Switch>
           {Object.keys(routes).map((routeKey) => {
             const Component = routes[routeKey].component;
