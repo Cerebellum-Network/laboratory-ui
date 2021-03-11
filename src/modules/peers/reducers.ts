@@ -21,7 +21,6 @@ const initialState: PeersState = {
 const peersReducer = handleActions(
   {
     [Actions['PEERS/FETCH']]: (state: PeersState, action: Action<any>) => {
-      console.log('Peers Fetch');
       return update(state, {
         $merge: {
           isLoading: true,
@@ -30,7 +29,6 @@ const peersReducer = handleActions(
     },
 
     [Actions['PEERS/FETCHED_SUCCESSFULLY']]: (state: PeersState, action: Action<any>) => {
-      console.log('Peers fetch successfully');
       return update(state, {
         $merge: {
           items: action.payload.items,

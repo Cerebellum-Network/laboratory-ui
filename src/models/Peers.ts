@@ -5,5 +5,6 @@ export class Peer {
     // readonly bestNumber: string,
     // readonly hash: string,
     readonly ip: string,
+    readonly country: string
   ) {}
 }

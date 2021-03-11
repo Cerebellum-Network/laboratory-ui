@@ -58,7 +58,6 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
 
   getPeer = async () => {
     const peer = (await this.httpClient.get(`/peer/details/TestNet`)).data;
-    console.log(peer);
     return peer;
   }
 }

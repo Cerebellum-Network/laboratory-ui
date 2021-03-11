@@ -11,8 +11,6 @@ function* fetchPeers(action) {
   try {
     const query = yield select((state: ApplicationState) => state.peer.network);
     const itemsData: Peer = yield call(accountTransactionsService.getPeer);
-    console.log(itemsData);
-    console.log('fetch peers');
     yield put(
       Actions['PEERS/FETCHED_SUCCESSFULLY']({
         items: itemsData,

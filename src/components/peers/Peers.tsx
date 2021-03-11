@@ -33,21 +33,25 @@ const Peers = ({ items, network, isLoading, fetchPeers }: PeerProps) => {
           {
             items.length !== 0 ? (
               <>
-                <table className="table table-hover">
+                <table className="table table-striped table-responsive">
                   <thead>
-                    <tr>
-                      <th scope="col">Peer Id</th>
-                      <th scope="col">Roles</th>
-                      <th scope="col">IP</th>
+                    <tr className="d-flex">
+                      <th className="col-1" scope="col">#</th>
+                      <th className="col-5" scope="col">Peer Id</th>
+                      <th className="col-2" scope="col">Roles</th>
+                      <th className="col-2" scope="col">IP</th>
+                      <th className="col-2" scope="col">Location</th>
                     </tr>
                   </thead>
                   <tbody>
                     {items.map((item: Peer, index) => {
                       return (
-                        <tr key={index}>
-                          <td>{item.peerId}</td>
-                          <td>{item.roles}</td>
-                          <td>{item.ip}</td>
+                        <tr key={index} className="d-flex">
+                          <th className="col-1">{index + 1}</th>
+                          <td className="col-5">{item.peerId}</td>
+                          <td className="col-2">{item.roles}</td>
+                          <td className="col-2">{item.ip}</td>
+                          <td className="col-2">{item.country}</td>
                         </tr>
                       );
                     })}
