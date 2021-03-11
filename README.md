@@ -12,6 +12,10 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * 
 
+### v1.1.0
+* Updated deployment script
+* Added peers dashboard
+
 ### v1.0.1
 * Updated license
 * Added Last Synced Block

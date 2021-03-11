@@ -4,6 +4,7 @@ import {Redirect, Switch, Route} from 'react-router-dom';
 import routes from './routes/routes';
 import {Navbar, Nav} from 'react-bootstrap';
 import logoImg from './assets/logo.png';
+import Network from './containers/network/network';
 
 const App = () => {
   return (
@@ -18,9 +19,11 @@ const App = () => {
             <Nav className="mr-auto">
               <Nav.Link href={`#${routes.ACCOUNT_TRANSACTIONS.link}`}>Block Scanner</Nav.Link>
               <Nav.Link href={`#${routes.FRIEND_BOT.link}`}>FriendBot</Nav.Link>
+              <Nav.Link href={`#${routes.PEERS.link}`}>Peers</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
+        {/* <Network/> */}
         <Switch>
           {Object.keys(routes).map((routeKey) => {
             const Component = routes[routeKey].component;

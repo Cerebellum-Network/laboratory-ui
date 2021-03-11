@@ -1,5 +1,6 @@
 import AccountTransactions from '../containers/accountTransactions/AccountTransactions';
 import FriendBot from '../containers/friendBot/FriendBot';
+import Peers from '../containers/peers/peers';
 
 interface RouteItem {
   link: string;
@@ -27,6 +28,13 @@ const routes: Routes = {
     description:
       'You can send test tokens to your wallet. Specify your wallet in the form below. You can send up to 3 requests per day.',
   },
+  PEERS: {
+    link: '/peers',
+    component: Peers,
+    title: 'Peers',
+    description:
+      'You can view the peers details',
+  }
 };
 
 export default routes;
