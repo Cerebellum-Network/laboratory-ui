@@ -1,7 +1,7 @@
 import {call, put, takeLatest, all, select} from 'redux-saga/effects';
 
 import Actions from './actions';
-import {ServiceLocator, services} from './../../services/ServiceLocator';
+import {ServiceLocator, services} from '../../services/ServiceLocator';
 import {ApplicationState} from '../../store/rootReducer';
 import {Peer} from '../../models/Peers';
 

@@ -13,7 +13,7 @@ export interface PeersState {
 
 const initialState: PeersState = {
   items: [],
-  errorMessage: 'I am error',
+  errorMessage: ' ',
   isLoading: false,
   network: 'TestNet',
 };

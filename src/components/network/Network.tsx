@@ -1,14 +1,19 @@
 import React from 'react';
 
 interface Props {
-  networkProvider: string;
   network: string;
   onNetworkChange(value: string);
 }
 
-const Network = ({networkProvider, network, onNetworkChange}: Props) => {
+const Network = ({network, onNetworkChange}: Props) => {
   function handleChangeNetwork(e: React.ChangeEvent<HTMLInputElement>) {
     onNetworkChange(e.target.value);
+  }
+
+  const networks = {
+    "TESTNET": "wss://testnet-node-1.cere.network:9944",
+    "TESTNET_DEV": "wss://testnet-node-1.dev.cere.network:9944",
+    "TESTNET_DEV1": "wss://testnet-node-1.dev1.cere.network:9944"
   }
 
   return (
@@ -19,20 +24,20 @@ const Network = ({networkProvider, network, onNetworkChange}: Props) => {
           className="btn-check btn-outline-primary"
           name="options"
           id="testnet"
-          value="wss://testnet-node-1.cere.network:9944"
+          value="TESTNET"
           onChange={handleChangeNetwork}
           autoComplete="off"
           defaultChecked
         />
         <label className="btn btn-outline-primary" htmlFor="testnet">
-          Tesnet
+          Testnet
         </label>
         <input
           type="radio"
           className="btn-check btn-outline-primary"
           name="options"
           id="testnetDev"
-          value="wss://testnet-node-1.dev.cere.network:9944"
+          value="TESTNET_DEV"
           onChange={handleChangeNetwork}
           autoComplete="off"
         />
@@ -44,7 +49,7 @@ const Network = ({networkProvider, network, onNetworkChange}: Props) => {
           className="btn-check btn-outline-primary"
           name="options"
           id="testnetDev1"
-          value="wss://testnet-node-1.dev1.cere.network:9944"
+          value="TESTNET_DEV1"
           onChange={handleChangeNetwork}
           autoComplete="off"
         />
@@ -52,7 +57,7 @@ const Network = ({networkProvider, network, onNetworkChange}: Props) => {
           Testnet Dev1
         </label>
       </div>
-      <span className="d-flex justify-content-end m-3">{networkProvider}</span>
+      <span className="d-flex justify-content-end m-3">{networks[network]}</span>
     </>
   );
 };
