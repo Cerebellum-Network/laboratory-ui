@@ -1,5 +1,6 @@
 import update from 'immutability-helper';
 import {Action, handleActions} from 'redux-actions';
+import {Networks} from '../../components/network/network.enum';
 
 import Actions from './actions';
 
@@ -8,7 +9,7 @@ export interface NetworkState {
 }
 
 const initialState: NetworkState = {
-  network: 'TESTNET',
+  network: Networks.testnet,
 };
 
 const networkReducer = handleActions(

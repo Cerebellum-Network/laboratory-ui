@@ -1,4 +1,6 @@
 import React from 'react';
+import {Networks} from './network.enum';
+import {NetworksProvider} from './networkProvider.enum';
 
 interface Props {
   network: string;
@@ -10,12 +12,6 @@ const Network = ({network, onNetworkChange}: Props) => {
     onNetworkChange(e.target.value);
   }
 
-  const networks = {
-    "TESTNET": "wss://testnet-node-1.cere.network:9944",
-    "TESTNET_DEV": "wss://testnet-node-1.dev.cere.network:9944",
-    "TESTNET_DEV1": "wss://testnet-node-1.dev1.cere.network:9944"
-  }
-
   return (
     <>
       <div className="tab d-flex justify-content-end m-3  ">
@@ -24,7 +20,7 @@ const Network = ({network, onNetworkChange}: Props) => {
           className="btn-check btn-outline-primary"
           name="options"
           id="testnet"
-          value="TESTNET"
+          value={Networks.testnet}
           onChange={handleChangeNetwork}
           autoComplete="off"
           defaultChecked
@@ -37,7 +33,7 @@ const Network = ({network, onNetworkChange}: Props) => {
           className="btn-check btn-outline-primary"
           name="options"
           id="testnetDev"
-          value="TESTNET_DEV"
+          value={Networks.testnetDev}
           onChange={handleChangeNetwork}
           autoComplete="off"
         />
@@ -49,7 +45,7 @@ const Network = ({network, onNetworkChange}: Props) => {
           className="btn-check btn-outline-primary"
           name="options"
           id="testnetDev1"
-          value="TESTNET_DEV1"
+          value={Networks.testnetDev1}
           onChange={handleChangeNetwork}
           autoComplete="off"
         />
@@ -57,7 +53,7 @@ const Network = ({network, onNetworkChange}: Props) => {
           Testnet Dev1
         </label>
       </div>
-      <span className="d-flex justify-content-end m-3">{networks[network]}</span>
+      <span className="d-flex justify-content-end m-3">{NetworksProvider[network]}</span>
     </>
   );
 };
