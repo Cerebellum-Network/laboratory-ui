@@ -7,7 +7,7 @@ import Actions from '../../modules/network/actions';
 
 const mapStateToProps = (state: RootState) => {
   return {
-    networkProvider: state.network.networkProvider,
+    network: state.network.network,
   };
 };
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {

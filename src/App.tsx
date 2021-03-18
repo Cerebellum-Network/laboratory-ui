@@ -23,7 +23,7 @@ const App = () => {
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {/* <Network/> */}
+        <Network/>
         <Switch>
           {Object.keys(routes).map((routeKey) => {
             const Component = routes[routeKey].component;

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import Actions from './../../modules/peers/actions';
+import Actions from '../../modules/peers/actions';
 import Peers from '../../components/peers/Peers';
 import {RootState} from "../../store/rootReducer";
 import {Dispatch, AnyAction} from "redux";

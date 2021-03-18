@@ -1,58 +1,40 @@
 import React from 'react';
 
 interface Props {
-  networkProvider: string;
   network: string;
   onNetworkChange(value: string);
 }
 
-const Network = ({networkProvider, network, onNetworkChange}: Props) => {
+const Network = ({network, onNetworkChange}: Props) => {
   function handleChangeNetwork(e: React.ChangeEvent<HTMLInputElement>) {
     onNetworkChange(e.target.value);
   }
 
+  const networks = JSON.parse(process.env.REACT_APP_NETWORKS);
+
   return (
     <>
-      <div className="tab d-flex justify-content-end m-3  ">
-        <input
-          type="radio"
-          className="btn-check btn-outline-primary"
-          name="options"
-          id="testnet"
-          value="wss://testnet-node-1.cere.network:9944"
-          onChange={handleChangeNetwork}
-          autoComplete="off"
-          defaultChecked
-        />
-        <label className="btn btn-outline-primary" htmlFor="testnet">
-          Tesnet
-        </label>
-        <input
-          type="radio"
-          className="btn-check btn-outline-primary"
-          name="options"
-          id="testnetDev"
-          value="wss://testnet-node-1.dev.cere.network:9944"
-          onChange={handleChangeNetwork}
-          autoComplete="off"
-        />
-        <label className="btn btn-outline-primary" htmlFor="testnetDev">
-          Testnet Dev
-        </label>
-        <input
-          type="radio"
-          className="btn-check btn-outline-primary"
-          name="options"
-          id="testnetDev1"
-          value="wss://testnet-node-1.dev1.cere.network:9944"
-          onChange={handleChangeNetwork}
-          autoComplete="off"
-        />
-        <label className="btn btn-outline-primary" htmlFor="testnetDev1">
-          Testnet Dev1
-        </label>
+      <div className="tab d-flex justify-content-end m-3">
+        {networks.map((network) => 
+          (
+            <>
+              <input
+                type="radio"
+                className="btn-check btn-outline-primary"
+                name="options"
+                id={network.type}
+                value={network.value}
+                onChange={handleChangeNetwork}
+                autoComplete="off"
+              />
+              <label className="btn btn-outline-primary" htmlFor={network.type}>
+                {network.value}
+              </label>
+            </>
+          )
+        )}
       </div>
-      <span className="d-flex justify-content-end m-3">{networkProvider}</span>
+      <span className="d-flex justify-content-end m-3">{networks.find((element) => element.value === network).url}</span>
     </>
   );
 };
