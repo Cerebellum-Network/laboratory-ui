@@ -2,7 +2,7 @@ import {AxiosInstance} from 'axios';
 import {AccountTransaction} from '../models/AccountTransaction';
 import {LaboratoryApiServiceInterface} from './LaboratoryApiServiceInterface';
 import {AccountTransactionsWithTotal} from '../models/AccountTransactionsWithTotal';
-import {Networks} from '../components/network/network.enum';
+import {Networks} from './networks.enum';
 
 class LaboratoryApiService implements LaboratoryApiServiceInterface {
   constructor(public httpClient: AxiosInstance) {
