@@ -9,8 +9,8 @@ const accountTransactionsService = ServiceLocator.getInstance(services.Laborator
 
 function* fetchPeers(action) {
   try {
-    const query = yield select((state: ApplicationState) => state.peer.network);
-    const itemsData: Peer = yield call(accountTransactionsService.getPeer);
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const itemsData: Peer = yield call(accountTransactionsService.getPeer, network);
     yield put(
       Actions['PEERS/FETCHED_SUCCESSFULLY']({
         items: itemsData,

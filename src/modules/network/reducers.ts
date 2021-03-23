@@ -9,7 +9,7 @@ export interface NetworkState {
 
 const networks = JSON.parse(process.env.REACT_APP_NETWORKS);
 const initialState: NetworkState = {
-  network: networks[0].value,
+  network: networks[0].type,
 };
 
 const networkReducer = handleActions(

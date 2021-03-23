@@ -38,7 +38,8 @@ function* fetchTransactions(action) {
 
 function* fetchLastSyncedBlock(action) {
   try {
-    const block = yield call(accountTransactionsService.fetchLastSyncedBlock);
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const block = yield call(accountTransactionsService.fetchLastSyncedBlock, network);
     yield put(
       Actions['ACCOUNT_TRANSACTIONS/FETCHED_LAST_BLOCK_SUCCESSFULLY']({
         block: block.latestBlock,

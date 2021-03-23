@@ -15,26 +15,27 @@ const Network = ({network, onNetworkChange}: Props) => {
   return (
     <>
       <div className="tab d-flex justify-content-end m-3">
-        {networks.map((network) => 
+        {networks.map((networkItem, key) =>
           (
-            <>
+            <React.Fragment key={key}>
               <input
                 type="radio"
                 className="btn-check btn-outline-primary"
                 name="options"
-                id={network.type}
-                value={network.value}
+                id={networkItem.type}
+                value={networkItem.type}
                 onChange={handleChangeNetwork}
                 autoComplete="off"
+                checked={networkItem.type === network}
               />
-              <label className="btn btn-outline-primary" htmlFor={network.type}>
-                {network.value}
+              <label className="btn btn-outline-primary" htmlFor={networkItem.type}>
+                {networkItem.label}
               </label>
-            </>
+            </React.Fragment>
           )
         )}
       </div>
-      <span className="d-flex justify-content-end m-3">{networks.find((element) => element.value === network).url}</span>
+      <span className="d-flex justify-content-end m-3">{networks.find((element) => element.type === network).url}</span>
     </>
   );
 };
