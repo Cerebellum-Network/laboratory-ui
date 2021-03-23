@@ -2,6 +2,7 @@ import {AxiosInstance} from 'axios';
 import {AccountTransaction} from '../models/AccountTransaction';
 import {LaboratoryApiServiceInterface} from './LaboratoryApiServiceInterface';
 import {AccountTransactionsWithTotal} from '../models/AccountTransactionsWithTotal';
+import {Networks} from './networks.enum';
 
 class LaboratoryApiService implements LaboratoryApiServiceInterface {
   constructor(public httpClient: AxiosInstance) {
@@ -20,9 +21,9 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     return result;
   }
 
-  fetchTransactions = async (query: string, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
+  fetchTransactions = async (query: string, network: Networks, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
     const transactions = (
-      await this.httpClient.get(`/block-scanner/account-transactions/${query}?offset=${offset}&limit=${limit}`)
+      await this.httpClient.get(`/block-scanner/account-transactions/${query}/${network}?offset=${offset}&limit=${limit}`)
     ).data;
 
     return new AccountTransactionsWithTotal(
@@ -43,23 +44,16 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     );
   };
 
-  fetchLastSyncedBlock = async (): Promise<any> => {
-    const block = (await this.httpClient.get(`/block-scanner/latest-block`)).data;
-    return block;
-
-  }
-  postFriendBotAssetRequest = async (destination: string) => {
-    return (await this.httpClient.post(`/friend-bot/request-assets`, {destination})).data;
+  fetchLastSyncedBlock = async (network): Promise<any> => {
+    return (await this.httpClient.get(`/block-scanner/latest-block/${network}`)).data;
+  };
+  postFriendBotAssetRequest = async (destination: string, network: Networks) => {
+    return (await this.httpClient.post(`/friend-bot/request-assets`, {destination, network})).data;
   };
 
-  getBlockNumber = async () => {
-    return (await this.httpClient.get(`/block-scanner/latest-block`)).data;
+  getPeer = async (network: string) => {
+    return (await this.httpClient.get(`/peer/details/${network}`)).data;
   };
-
-  getPeer = async () => {
-    const peer = (await this.httpClient.get(`/peer/details/TestNet`)).data;
-    return peer;
-  }
 }
 
 export default LaboratoryApiService;

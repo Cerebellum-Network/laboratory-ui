@@ -10,11 +10,14 @@ const accountTransactionsService = ServiceLocator.getInstance(services.Laborator
 function* fetchTransactions(action) {
   try {
     const query = yield select((state: ApplicationState) => state.accountTransactions.searchAccount);
+    const network = yield select((state: ApplicationState) => state.network.network);
+
     const limit = +process.env.REACT_APP_ROWS_ON_PAGE;
     const offset = (action.payload - 1) * limit;
     const itemsData: AccountTransactionsWithTotal = yield call(
       accountTransactionsService.fetchTransactions,
       query,
+      network,
       offset,
       limit,
     );
@@ -35,7 +38,8 @@ function* fetchTransactions(action) {
 
 function* fetchLastSyncedBlock(action) {
   try {
-    const block = yield call(accountTransactionsService.fetchLastSyncedBlock);
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const block = yield call(accountTransactionsService.fetchLastSyncedBlock, network);
     yield put(
       Actions['ACCOUNT_TRANSACTIONS/FETCHED_LAST_BLOCK_SUCCESSFULLY']({
         block: block.latestBlock,

@@ -8,6 +8,7 @@ import LastBlock from "../../components/accountTransactions/LastBlock";
 const mapStateToProps = (state: RootState) => {
   return {
     block: state.accountTransactions.block,
+    network: state.network.network,
   }
 };
 
