@@ -8,7 +8,7 @@ import {Dispatch, AnyAction} from "redux";
 const mapStateToProps = (state: RootState) => {
   return {
     items: state.peer.items,
-    network: state.peer.network,
+    network: state.network.network,
     isLoading: state.peer.isLoading,
     errorMessage: state.peer.errorMessage,
   }

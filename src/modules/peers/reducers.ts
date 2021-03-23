@@ -8,14 +8,12 @@ export interface PeersState {
   items: Peer[] | null;
   isLoading: boolean;
   errorMessage: string;
-  network: string;
 }
 
 const initialState: PeersState = {
   items: [],
   errorMessage: '',
   isLoading: false,
-  network: 'TestNet',
 };
 
 const peersReducer = handleActions(
