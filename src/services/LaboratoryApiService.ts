@@ -21,9 +21,9 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     return result;
   }
 
-  fetchTransactions = async (query: string, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
+  fetchTransactions = async (query: string, network: Networks, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
     const transactions = (
-      await this.httpClient.get(`/block-scanner/account-transactions/${query}?offset=${offset}&limit=${limit}`)
+      await this.httpClient.get(`/block-scanner/account-transactions/${query}/${network}?offset=${offset}&limit=${limit}`)
     ).data;
 
     return new AccountTransactionsWithTotal(

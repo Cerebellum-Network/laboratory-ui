@@ -1,3 +1,6 @@
+import { AccountTransactionsWithTotal } from "../models/AccountTransactionsWithTotal";
+import { Networks } from "./networks.enum";
+
 export interface LaboratoryApiServiceInterface {
-  fetchTransactions(query: string, offset: number, limit: number): Promise<any>;
+  fetchTransactions(query: string, network: Networks, offset: number, limit: number): Promise<AccountTransactionsWithTotal>;
 }
