@@ -11,6 +11,7 @@ This application depends on backend API, which can be found [here](https://githu
 ## Release notes
 ### vNext
 * Updated block-explorer to switch between networks.
+* Added treasury balance
 
 ### v1.1.0
 * Updated deployment script

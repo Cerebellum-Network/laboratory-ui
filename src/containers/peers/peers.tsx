@@ -9,6 +9,7 @@ const mapStateToProps = (state: RootState) => {
   return {
     items: state.peer.items,
     network: state.network.network,
+    treasuryBalance: state.peer.treasuryBalance,
     isLoading: state.peer.isLoading,
     errorMessage: state.peer.errorMessage,
   }
@@ -17,6 +18,7 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     fetchPeers: () => dispatch(Actions["PEERS/FETCH"]()),
+    fetchTreasuryBalance: () => dispatch(Actions["PEERS/TREASURY_BALANCE"]()),
   };
 };
 
