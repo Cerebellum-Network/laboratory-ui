@@ -23,10 +23,29 @@ function* fetchPeers(action) {
   }
 }
 
+function* fetchTreasuryBalance(action) {
+  try {
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const itemsData: Peer = yield call(accountTransactionsService.treasuryBalance, network);
+    yield put(
+      Actions['PEERS/TREASURY_BALANCE_FETCHED_SUCCESSFULLY']({
+        items: itemsData,
+      }),
+    );
+  } catch ({message}) {
+    console.error(message);
+    yield put(Actions['PEERS/TREASURY_BALANCE_FETCHED_ERROR'](message));
+  }
+}
+
 function* fetchPeersSaga() {
   yield takeLatest(Actions['PEERS/FETCH'], fetchPeers);
 }
 
+function* fetchTreasuryBalanceSaga() {
+  yield takeLatest(Actions['PEERS/TREASURY_BALANCE'], fetchTreasuryBalance);
+}
+
 export default function* peerSaga() {
-  yield all([fetchPeersSaga()]);
+  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga()]);
 }

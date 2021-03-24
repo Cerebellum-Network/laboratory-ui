@@ -6,12 +6,14 @@ import {Peer} from '../../models/Peers';
 
 export interface PeersState {
   items: Peer[] | null;
+  treasuryBalance: string;
   isLoading: boolean;
   errorMessage: string;
 }
 
 const initialState: PeersState = {
   items: [],
+  treasuryBalance: '',
   errorMessage: '',
   isLoading: false,
 };
@@ -34,6 +36,7 @@ const peersReducer = handleActions(
         },
       });
     },
+
     [Actions['PEERS/FETCHED_ERROR']]: (state: PeersState, action: Action<any>) => {
       return update(state, {
         $merge: {
@@ -42,6 +45,15 @@ const peersReducer = handleActions(
         },
       });
     },
+
+    [Actions['PEERS/TREASURY_BALANCE_FETCHED_SUCCESSFULLY']]: (state: PeersState, action: Action<any>) => {
+      return update(state, {
+        $merge: {
+         treasuryBalance : action.payload.items,
+        },
+      });
+    },
+
   },
   initialState,
 );
