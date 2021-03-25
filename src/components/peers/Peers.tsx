@@ -7,45 +7,44 @@ interface PeerProps {
   items: Peer[];
   network: string;
   treasuryBalance: string;
+  totalIssuance: string;
   isLoading: boolean;
   errorMessage: string;
 
   fetchPeers(): string;
   fetchTreasuryBalance(): string;
+  fetchTotalIssuance(): string;
 }
 
 const Peers = ({
   items,
   network,
   treasuryBalance,
+  totalIssuance,
   isLoading,
   fetchPeers,
   fetchTreasuryBalance,
+  fetchTotalIssuance,
   errorMessage,
 }: PeerProps) => {
   useEffect(() => {
     fetchPeers();
-  }, []);
-
-  useEffect(() => {
-    if (network) {
-      fetchPeers();
-    }
-  }, [network]);
-
-  useEffect(() => {
     fetchTreasuryBalance();
+    fetchTotalIssuance();
   }, []);
 
   useEffect(() => {
     if (network) {
-      fetchTreasuryBalance();
+     fetchPeers();
+     fetchTreasuryBalance();
+      fetchTotalIssuance();
     }
   }, [network]);
 
   return (
     <>
-      <div className="text-center m-2 font-weight-normal h4">Treasury Balance: {treasuryBalance}</div>
+      <div className="text-center m-2 font-weight-normal h6">Treasury Balance: {treasuryBalance}</div>
+      <div className="text-center m-2 font-weight-normal h6">Total Issuance: {totalIssuance}</div>
       <>
         {isLoading === true ? (
           <>

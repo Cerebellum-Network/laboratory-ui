@@ -7,6 +7,7 @@ import {Peer} from '../../models/Peers';
 export interface PeersState {
   items: Peer[] | null;
   treasuryBalance: string;
+  totalIssuance: string;
   isLoading: boolean;
   errorMessage: string;
 }
@@ -14,6 +15,7 @@ export interface PeersState {
 const initialState: PeersState = {
   items: [],
   treasuryBalance: '',
+  totalIssuance: '',
   errorMessage: '',
   isLoading: false,
 };
@@ -54,6 +56,13 @@ const peersReducer = handleActions(
       });
     },
 
+    [Actions['PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY']]: (state: PeersState, action: Action<any>) => {
+      return update(state, {
+        $merge: {
+         totalIssuance : action.payload.items,
+        },
+      });
+    },
   },
   initialState,
 );

@@ -58,6 +58,10 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   treasuryBalance = async (network: string) => {
     return (await this.httpClient.get(`/peer/treasury-balance/${network}`)).data
   };
+
+  totalIssuance = async (network: string) => {
+    return (await this.httpClient.get(`/peer/total-issuance/${network}`)).data
+  };
 }
 
 export default LaboratoryApiService;

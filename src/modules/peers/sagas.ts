@@ -38,6 +38,21 @@ function* fetchTreasuryBalance(action) {
   }
 }
 
+function* fetchTotalIssuance(action) {
+  try {
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const itemsData: Peer = yield call(accountTransactionsService.totalIssuance, network);
+    yield put(
+      Actions['PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY']({
+        items: itemsData,
+      }),
+    );
+  } catch ({message}) {
+    console.error(message);
+    yield put(Actions['PEERS/TOTAL_ISSUANCE_FETCHED_ERROR'](message));
+  }
+}
+
 function* fetchPeersSaga() {
   yield takeLatest(Actions['PEERS/FETCH'], fetchPeers);
 }
@@ -46,6 +61,10 @@ function* fetchTreasuryBalanceSaga() {
   yield takeLatest(Actions['PEERS/TREASURY_BALANCE'], fetchTreasuryBalance);
 }
 
+function* fetchTotalIssuanceSaga() {
+  yield takeLatest(Actions['PEERS/TOTAL_ISSUANCE'], fetchTotalIssuance);
+}
+
 export default function* peerSaga() {
-  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga()]);
+  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga(), fetchTotalIssuanceSaga()]);
 }
