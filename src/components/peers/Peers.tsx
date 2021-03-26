@@ -8,8 +8,6 @@ import TreasuryBalance from '../../containers/peers/TreasuryBalance';
 interface PeerProps {
   items: Peer[];
   network: string;
-  treasuryBalance: string;
-  totalIssuance: string;
   isLoading: boolean;
   errorMessage: string;
 
