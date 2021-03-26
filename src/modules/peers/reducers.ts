@@ -10,6 +10,8 @@ export interface PeersState {
   totalIssuance: string;
   isLoading: boolean;
   errorMessage: string;
+  success: boolean;
+  TreasuryBalSuccess: boolean;
 }
 
 const initialState: PeersState = {
@@ -18,6 +20,8 @@ const initialState: PeersState = {
   totalIssuance: '',
   errorMessage: '',
   isLoading: false,
+  success: false,
+  TreasuryBalSuccess: false,
 };
 
 const peersReducer = handleActions(
@@ -51,7 +55,8 @@ const peersReducer = handleActions(
     [Actions['PEERS/TREASURY_BALANCE_FETCHED_SUCCESSFULLY']]: (state: PeersState, action: Action<any>) => {
       return update(state, {
         $merge: {
-         treasuryBalance : action.payload.items,
+          treasuryBalance: action.payload.items,
+          TreasuryBalSuccess: true,
         },
       });
     },
@@ -59,7 +64,8 @@ const peersReducer = handleActions(
     [Actions['PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY']]: (state: PeersState, action: Action<any>) => {
       return update(state, {
         $merge: {
-         totalIssuance : action.payload.items,
+          totalIssuance: action.payload.items,
+          success: true,
         },
       });
     },

@@ -2,6 +2,8 @@ import React, {useEffect} from 'react';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Peer} from '../../models/Peers';
+import TotalIssuance from '../../containers/peers/TotalIssuance';
+import TreasuryBalance from '../../containers/peers/TreasuryBalance';
 
 interface PeerProps {
   items: Peer[];
@@ -12,39 +14,23 @@ interface PeerProps {
   errorMessage: string;
 
   fetchPeers(): string;
-  fetchTreasuryBalance(): string;
-  fetchTotalIssuance(): string;
 }
 
-const Peers = ({
-  items,
-  network,
-  treasuryBalance,
-  totalIssuance,
-  isLoading,
-  fetchPeers,
-  fetchTreasuryBalance,
-  fetchTotalIssuance,
-  errorMessage,
-}: PeerProps) => {
+const Peers = ({items, network, isLoading, fetchPeers, errorMessage}: PeerProps) => {
   useEffect(() => {
     fetchPeers();
-    fetchTreasuryBalance();
-    fetchTotalIssuance();
   }, []);
 
   useEffect(() => {
     if (network) {
-     fetchPeers();
-     fetchTreasuryBalance();
-      fetchTotalIssuance();
+      fetchPeers();
     }
   }, [network]);
 
   return (
     <>
-      <div className="text-center m-2 font-weight-normal h6">Treasury Balance: {treasuryBalance}</div>
-      <div className="text-center m-2 font-weight-normal h6">Total Issuance: {totalIssuance}</div>
+      <TreasuryBalance />
+      <TotalIssuance />
       <>
         {isLoading === true ? (
           <>
