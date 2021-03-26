@@ -2,27 +2,19 @@ import React, {useEffect} from 'react';
 import {faSpinner} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Peer} from '../../models/Peers';
+import TotalIssuance from '../../containers/peers/TotalIssuance';
+import TreasuryBalance from '../../containers/peers/TreasuryBalance';
 
 interface PeerProps {
   items: Peer[];
   network: string;
-  treasuryBalance: string;
   isLoading: boolean;
   errorMessage: string;
 
   fetchPeers(): string;
-  fetchTreasuryBalance(): string;
 }
 
-const Peers = ({
-  items,
-  network,
-  treasuryBalance,
-  isLoading,
-  fetchPeers,
-  fetchTreasuryBalance,
-  errorMessage,
-}: PeerProps) => {
+const Peers = ({items, network, isLoading, fetchPeers, errorMessage}: PeerProps) => {
   useEffect(() => {
     fetchPeers();
   }, []);
@@ -33,19 +25,10 @@ const Peers = ({
     }
   }, [network]);
 
-  useEffect(() => {
-    fetchTreasuryBalance();
-  }, []);
-
-  useEffect(() => {
-    if (network) {
-      fetchTreasuryBalance();
-    }
-  }, [network]);
-
   return (
     <>
-      <div className="text-center m-2 font-weight-normal h4">Treasury Balance: {treasuryBalance}</div>
+      <TreasuryBalance />
+      <TotalIssuance />
       <>
         {isLoading === true ? (
           <>
