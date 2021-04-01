@@ -103,7 +103,7 @@ const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetri
           <Container fluid className="m-2">
             <Row>
               <Col>
-                <Card style={{width: '10rem'}}>
+                <Card>
                   <Card.Body>
                     <Card.Title>Node Count</Card.Title>
                     <Card.Text>{ddcMetrics?.nodesCount}</Card.Text>
@@ -111,7 +111,7 @@ const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetri
                 </Card>
               </Col>
               <Col>
-                <Card style={{width: '10rem'}}>
+                <Card>
                   <Card.Body>
                     <Card.Title>TotalPartitions</Card.Title>
                     <Card.Text>{ddcMetrics?.totalPartitions}</Card.Text>
@@ -119,7 +119,7 @@ const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetri
                 </Card>
               </Col>
               <Col>
-                <Card style={{width: '10rem'}}>
+                <Card>
                   <Card.Body>
                     <Card.Title>Available Partitions</Card.Title>
                     <Card.Text>{ddcMetrics?.availablePartitions}</Card.Text>
@@ -127,7 +127,7 @@ const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetri
                 </Card>
               </Col>
               <Col>
-                <Card style={{width: '10rem'}}>
+                <Card>
                   <Card.Body>
                     <Card.Title>Reserved Partitions</Card.Title>
                     <Card.Text>{ddcMetrics?.reservedPartitions}</Card.Text>
