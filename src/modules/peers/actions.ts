@@ -1,7 +1,7 @@
 import {createAction} from 'redux-actions';
 
 interface Actions {
-  [key: string]: any,
+  [key: string]: any;
 }
 
 export default {
@@ -14,4 +14,7 @@ export default {
   'PEERS/TOTAL_ISSUANCE': createAction('PEERS/TOTAL_ISSUANCE'),
   'PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY': createAction('PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY'),
   'PEERS/TOTAL_ISSUANCE_FETCHED_ERROR': createAction('PEERS/TOTAL_ISSUANCE_FETCHED_ERROR'),
+  'PEERS/DDC_METRICS': createAction('PEERS/DDC_METRICS'),
+  'PEERS/DDC_METRICS_FETCHED_SUCCESSFULLY': createAction('PEERS/DDC_METRICS_FETCHED_SUCCESSFULLY'),
+  'PEERS/DDC_METRICS_FETCHED_ERROR': createAction('PEERS/DDC_METRICS_FETCHED_ERROR'),
 } as Actions;

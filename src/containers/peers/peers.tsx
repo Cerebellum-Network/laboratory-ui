@@ -8,6 +8,7 @@ import {Dispatch, AnyAction} from 'redux';
 const mapStateToProps = (state: RootState) => {
   return {
     items: state.peer.items,
+    ddcMetrics: state.peer.ddcMetrics,
     network: state.network.network,
     isLoading: state.peer.isLoading,
     errorMessage: state.peer.errorMessage,
@@ -17,6 +18,7 @@ const mapStateToProps = (state: RootState) => {
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => {
   return {
     fetchPeers: () => dispatch(Actions['PEERS/FETCH']()),
+    fetchDdcMetrics: () => dispatch(Actions['PEERS/DDC_METRICS']()),
   };
 };
 
