@@ -21,9 +21,16 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
     return result;
   }
 
-  fetchTransactions = async (query: string, network: Networks, offset: number, limit: number): Promise<AccountTransactionsWithTotal> => {
+  fetchTransactions = async (
+    query: string,
+    network: Networks,
+    offset: number,
+    limit: number,
+  ): Promise<AccountTransactionsWithTotal> => {
     const transactions = (
-      await this.httpClient.get(`/block-scanner/account-transactions/${query}/${network}?offset=${offset}&limit=${limit}`)
+      await this.httpClient.get(
+        `/block-scanner/account-transactions/${query}/${network}?offset=${offset}&limit=${limit}`,
+      )
     ).data;
 
     return new AccountTransactionsWithTotal(
@@ -56,11 +63,15 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   };
 
   treasuryBalance = async (network: string) => {
-    return (await this.httpClient.get(`/peer/treasury-balance/${network}`)).data
+    return (await this.httpClient.get(`/peer/treasury-balance/${network}`)).data;
   };
 
   totalIssuance = async (network: string) => {
-    return (await this.httpClient.get(`/peer/total-issuance/${network}`)).data
+    return (await this.httpClient.get(`/peer/total-issuance/${network}`)).data;
+  };
+
+  ddcMetrics = async () => {
+    return (await this.httpClient.get(`/peer/ddc-metrics`)).data;
   };
 }
 

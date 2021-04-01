@@ -12,6 +12,7 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * Fixed header menu
 * Added total issuance in peers tab.
+* Added DDC metrics in peers tab.
 
 ### v1.2.0 [API: v1.4.0]
 * Updated block-explorer to switch between networks.
