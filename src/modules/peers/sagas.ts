@@ -4,6 +4,7 @@ import Actions from './actions';
 import {ServiceLocator, services} from '../../services/ServiceLocator';
 import {ApplicationState} from '../../store/rootReducer';
 import {Peer} from '../../models/Peers';
+import {DdcMetrics} from '../../models/DdcMetrics';
 
 const accountTransactionsService = ServiceLocator.getInstance(services.LaboratoryApiService);
 
@@ -23,10 +24,66 @@ function* fetchPeers(action) {
   }
 }
 
+function* fetchTreasuryBalance(action) {
+  try {
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const itemsData = yield call(accountTransactionsService.treasuryBalance, network);
+    yield put(
+      Actions['PEERS/TREASURY_BALANCE_FETCHED_SUCCESSFULLY']({
+        items: itemsData,
+      }),
+    );
+  } catch ({message}) {
+    console.error(message);
+    yield put(Actions['PEERS/TREASURY_BALANCE_FETCHED_ERROR'](message));
+  }
+}
+
+function* fetchTotalIssuance(action) {
+  try {
+    const network = yield select((state: ApplicationState) => state.network.network);
+    const itemsData = yield call(accountTransactionsService.totalIssuance, network);
+    yield put(
+      Actions['PEERS/TOTAL_ISSUANCE_FETCHED_SUCCESSFULLY']({
+        items: itemsData,
+      }),
+    );
+  } catch ({message}) {
+    console.error(message);
+    yield put(Actions['PEERS/TOTAL_ISSUANCE_FETCHED_ERROR'](message));
+  }
+}
+
+function* fetcDdcMetrics(action) {
+  try {
+    const itemsData: DdcMetrics = yield call(accountTransactionsService.ddcMetrics);
+    yield put(
+      Actions['PEERS/DDC_METRICS_FETCHED_SUCCESSFULLY']({
+        items: itemsData,
+      }),
+    );
+    console.log(itemsData);
+  } catch ({message}) {
+    console.error(message);
+    yield put(Actions['PEERS/DDC_METRICS_FETCHED_ERROR'](message));
+  }
+}
+
 function* fetchPeersSaga() {
   yield takeLatest(Actions['PEERS/FETCH'], fetchPeers);
 }
 
+function* fetchTreasuryBalanceSaga() {
+  yield takeLatest(Actions['PEERS/TREASURY_BALANCE'], fetchTreasuryBalance);
+}
+
+function* fetchTotalIssuanceSaga() {
+  yield takeLatest(Actions['PEERS/TOTAL_ISSUANCE'], fetchTotalIssuance);
+}
+
+function* fetchDdcMetricsSaga() {
+  yield takeLatest(Actions['PEERS/DDC_METRICS'], fetcDdcMetrics);
+}
 export default function* peerSaga() {
-  yield all([fetchPeersSaga()]);
+  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga(), fetchTotalIssuanceSaga(), fetchDdcMetricsSaga()]);
 }

@@ -12,8 +12,14 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * 
 
+### v1.3.0 [API: 1.5.0]
+* Fixed header menu
+* Added total issuance in peers tab.
+* Added DDC metrics in peers tab.
+
 ### v1.2.0 [API: v1.4.0]
 * Updated block-explorer to switch between networks.
+* Added treasury balance
 
 ### v1.1.0
 * Updated deployment script

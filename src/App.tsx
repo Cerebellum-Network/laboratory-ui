@@ -5,8 +5,11 @@ import routes from './routes/routes';
 import {Navbar, Nav} from 'react-bootstrap';
 import logoImg from './assets/logo.png';
 import Network from './containers/network/network';
+import {withRouter} from "react-router";
 
-const App = () => {
+const App = (props) => {
+  const {location} = props;
+
   return (
     <div className="container-fluid">
       <div className="min-vh-100">
@@ -17,9 +20,11 @@ const App = () => {
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href={`#${routes.ACCOUNT_TRANSACTIONS.link}`}>Block Scanner</Nav.Link>
-              <Nav.Link href={`#${routes.FRIEND_BOT.link}`}>FriendBot</Nav.Link>
-              <Nav.Link href={`#${routes.PEERS.link}`}>Peers</Nav.Link>
+              {
+                Object.keys(routes).map((route) => (
+                  <Nav.Link active={location.pathname === routes[route].link} href={`#${routes[route].link}`}>{routes[route].title}</Nav.Link>
+                ))
+              }
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -45,4 +50,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default withRouter(App);
