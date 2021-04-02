@@ -10,6 +10,9 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
+* 
+
+### v1.3.0 [API: 1.5.0]
 * Fixed header menu
 * Added total issuance in peers tab.
 * Added DDC metrics in peers tab.
