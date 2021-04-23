@@ -4,6 +4,7 @@ export class AccountTransaction {
     readonly destinationId: string,
     readonly transactionHash: string,
     readonly transactionIndex: string,
+    readonly blockHash: string,
     readonly method: string,
     readonly timestamp: string,
   ) {}
