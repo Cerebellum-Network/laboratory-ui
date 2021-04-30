@@ -6,10 +6,14 @@ import {AccountTransaction} from "../../models/AccountTransaction";
 import Pagination from "./Pagination";
 import LastBlock from "../../containers/accountTransactions/LastBlock";
 import Balance from '../../containers/accountTransactions/Balance';
+import {Networks} from "../../services/networks.enum";
 
 const txOnPage = +process.env.REACT_APP_ROWS_ON_PAGE;
+const blockViewerUrl = process.env.REACT_APP_BLOCK_VIEWER_URL;
+const networks = JSON.parse(process.env.REACT_APP_NETWORKS);
 
 interface AccountTransactionsProps {
+  network: Networks;
   items: AccountTransaction[];
   itemsTotal: number;
   currentPage: number;
@@ -23,6 +27,7 @@ interface AccountTransactionsProps {
 
 const AccountTransactions = (
   {
+    network,
     items,
     searchAccount,
     isLoading,
@@ -34,6 +39,8 @@ const AccountTransactions = (
   function handleSearchAccountChanged(e: React.ChangeEvent<HTMLInputElement>) {
     onSearchAccountChanged(e.target.value);
   }
+
+  const { url: networkUrl } = networks.find((networkItem) => networkItem.type === network);
 
   return (
     <>
@@ -80,6 +87,7 @@ const AccountTransactions = (
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Transaction Hash</th>
+                <th scope="col">Block Hash</th>
                 <th scope="col">Sender</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Timestamp</th>
@@ -93,6 +101,10 @@ const AccountTransactions = (
                   <tr key={index}>
                     <td scope="row">{index + txOnPage * (currentPage - 1) + 1}</td>
                     <td>{item.transactionHash}</td>
+                    <td>{blockViewerUrl
+                      ? <a href={`${blockViewerUrl}/?rpc=${encodeURIComponent(networkUrl)}/#/explorer/query/${item.blockHash}`} target="_blank">{item.blockHash}</a>
+                      : item.blockHash
+                    }</td>
                     <td>{item.senderId}</td>
                     <td>{item.destinationId}</td>
                     <td>{item.timestamp}</td>

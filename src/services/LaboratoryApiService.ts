@@ -35,12 +35,13 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
 
     return new AccountTransactionsWithTotal(
       transactions.data.map(
-        ({senderId, transactionHash, transactionIndex, method, args, timestamp}) =>
+        ({senderId, transactionHash, blockHash, transactionIndex, method, args, timestamp}) =>
           new AccountTransaction(
             senderId,
             this.getDestination(method, args),
             transactionHash,
             transactionIndex,
+            blockHash,
             method,
             timestamp,
           ),

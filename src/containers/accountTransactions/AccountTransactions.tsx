@@ -7,6 +7,7 @@ import {Dispatch, AnyAction} from "redux";
 
 const mapStateToProps = (state: RootState) => {
   return {
+    network: state.network.network,
     items: state.accountTransactions.items,
     itemsTotal: state.accountTransactions.itemsTotal,
     searchAccount: state.accountTransactions.searchAccount,
