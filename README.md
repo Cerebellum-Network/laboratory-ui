@@ -12,6 +12,11 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * 
 
+### v1.4.0
+* Show a block hash of a transaction
+* Add link to a block hash to view details in the block viewer
+* Use archive node urls in config
+
 ### v1.3.0 [API: 1.5.0]
 * Fixed header menu
 * Added total issuance in peers tab.
