@@ -28,7 +28,7 @@ const Network = ({network, onNetworkChange}: Props) => {
                 autoComplete="off"
                 checked={networkItem.type === network}
               />
-              <label className="btn btn-outline-primary" htmlFor={networkItem.type}>
+              <label className="btn btn-outline-primary m-1" htmlFor={networkItem.type}>
                 {networkItem.label}
               </label>
             </React.Fragment>
