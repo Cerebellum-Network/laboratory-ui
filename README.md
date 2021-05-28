@@ -10,7 +10,7 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
-* 
+* Updated networks
 
 ### v1.4.0
 * Show a block hash of a transaction
