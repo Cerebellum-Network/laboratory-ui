@@ -10,7 +10,7 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
-*
+* Updated endpoints to align with network
 
 ### v1.5.0
 * Updated networks
