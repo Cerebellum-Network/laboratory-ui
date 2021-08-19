@@ -13,7 +13,8 @@ This application depends on backend API, which can be found [here](https://githu
 *
 
 ### v1.6.0
-* Updated endpoints to align with network
+* Updated Network endpoints
+
 ### v1.5.0
 * Updated networks
 
