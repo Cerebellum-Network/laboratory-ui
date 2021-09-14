@@ -11,6 +11,7 @@ This application depends on backend API, which can be found [here](https://githu
 ## Release notes
 ### vNext
 * Updated endpoints to align with network
+* Added support for chainbridge method
 
 ### v1.5.0
 * Updated networks
