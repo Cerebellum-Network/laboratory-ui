@@ -12,9 +12,11 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   private getDestination(method: string, args: string) {
     let result = '';
     switch (method) {
-      case 'balances.transferKeepAlive': {
+      case 'balances.transferKeepAlive': 
+      case 'chainBridge.acknowledgeProposal': {
         const parts = args.split(',');
         result = parts[0];
+        break;
       }
     }
 
