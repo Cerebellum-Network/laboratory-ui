@@ -11,7 +11,7 @@ This application depends on backend API, which can be found [here](https://githu
 ## Release notes
 ### vNext
 * Added support for chainbridge pallet method
-* Renamed header in block-viewer
+* Renamed header from 'method' to 'extrinsic'
 
 ### v1.6.0
 * Updated Network endpoints
