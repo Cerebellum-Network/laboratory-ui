@@ -10,7 +10,7 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
-* Added support for chainbridge method
+* Added support for chainbridge pallet method
 
 ### v1.6.0
 * Updated Network endpoints
