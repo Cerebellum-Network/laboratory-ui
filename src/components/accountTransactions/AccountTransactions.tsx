@@ -91,7 +91,7 @@ const AccountTransactions = (
                 <th scope="col">Sender</th>
                 <th scope="col">Destination</th>
                 <th scope="col">Timestamp</th>
-                <th scope="col">Method</th>
+                <th scope="col">Extrinsic</th>
               </tr>
               </thead>
 
