@@ -10,6 +10,9 @@ This application depends on backend API, which can be found [here](https://githu
 
 ## Release notes
 ### vNext
+*
+
+### v1.7.0
 * Added support for chainbridge pallet method
 * Renamed header from 'method' to 'extrinsic'
 
