@@ -11,6 +11,9 @@ This application depends on backend API, which can be found [here](https://githu
 ## Release notes
 
 ### vNext
+* ...
+
+### v1.8.0
 * Removed DDC metrics
 
 ### v1.7.0
