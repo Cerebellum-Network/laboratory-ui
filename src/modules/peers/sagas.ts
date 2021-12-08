@@ -4,7 +4,6 @@ import Actions from './actions';
 import {ServiceLocator, services} from '../../services/ServiceLocator';
 import {ApplicationState} from '../../store/rootReducer';
 import {Peer} from '../../models/Peers';
-import {DdcMetrics} from '../../models/DdcMetrics';
 
 const accountTransactionsService = ServiceLocator.getInstance(services.LaboratoryApiService);
 
@@ -54,21 +53,6 @@ function* fetchTotalIssuance(action) {
   }
 }
 
-function* fetcDdcMetrics(action) {
-  try {
-    const itemsData: DdcMetrics = yield call(accountTransactionsService.ddcMetrics);
-    yield put(
-      Actions['PEERS/DDC_METRICS_FETCHED_SUCCESSFULLY']({
-        items: itemsData,
-      }),
-    );
-    console.log(itemsData);
-  } catch ({message}) {
-    console.error(message);
-    yield put(Actions['PEERS/DDC_METRICS_FETCHED_ERROR'](message));
-  }
-}
-
 function* fetchPeersSaga() {
   yield takeLatest(Actions['PEERS/FETCH'], fetchPeers);
 }
@@ -81,9 +65,6 @@ function* fetchTotalIssuanceSaga() {
   yield takeLatest(Actions['PEERS/TOTAL_ISSUANCE'], fetchTotalIssuance);
 }
 
-function* fetchDdcMetricsSaga() {
-  yield takeLatest(Actions['PEERS/DDC_METRICS'], fetcDdcMetrics);
-}
 export default function* peerSaga() {
-  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga(), fetchTotalIssuanceSaga(), fetchDdcMetricsSaga()]);
+  yield all([fetchPeersSaga(), fetchTreasuryBalanceSaga(), fetchTotalIssuanceSaga()]);
 }

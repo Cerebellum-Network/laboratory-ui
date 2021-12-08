@@ -4,7 +4,6 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {Peer} from '../../models/Peers';
 import TotalIssuance from '../../containers/peers/TotalIssuance';
 import TreasuryBalance from '../../containers/peers/TreasuryBalance';
-import {DdcMetrics} from '../../models/DdcMetrics';
 import {Card, Col, Container, Row, Tab, Tabs} from 'react-bootstrap';
 
 interface PeerProps {
@@ -12,17 +11,14 @@ interface PeerProps {
   network: string;
   isLoading: boolean;
   errorMessage: string;
-  ddcMetrics: DdcMetrics;
   fetchPeers(): string;
-  fetchDdcMetrics(): string;
 }
 
-const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetrics, errorMessage}: PeerProps) => {
+const Peers = ({items, network, isLoading, fetchPeers, errorMessage}: PeerProps) => {
   const [tab, setTab] = useState('Tab_1');
 
   useEffect(() => {
     fetchPeers();
-    fetchDdcMetrics();
   }, []);
 
   useEffect(() => {
@@ -98,44 +94,6 @@ const Peers = ({items, network, isLoading, ddcMetrics, fetchPeers, fetchDdcMetri
               )}
             </>
           </div>
-        </Tab>
-        <Tab eventKey="Tab_2" title="Peers">
-          <Container fluid className="m-2">
-            <Row>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Node Count</Card.Title>
-                    <Card.Text>{ddcMetrics?.nodesCount}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>TotalPartitions</Card.Title>
-                    <Card.Text>{ddcMetrics?.totalPartitions}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Available Partitions</Card.Title>
-                    <Card.Text>{ddcMetrics?.availablePartitions}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-              <Col>
-                <Card>
-                  <Card.Body>
-                    <Card.Title>Reserved Partitions</Card.Title>
-                    <Card.Text>{ddcMetrics?.reservedPartitions}</Card.Text>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
         </Tab>
       </Tabs>
     </>

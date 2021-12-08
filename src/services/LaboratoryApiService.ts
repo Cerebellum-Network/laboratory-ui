@@ -12,7 +12,7 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
   private getDestination(method: string, args: string) {
     let result = '';
     switch (method) {
-      case 'balances.transferKeepAlive': 
+      case 'balances.transferKeepAlive':
       case 'chainBridge.acknowledgeProposal': {
         const parts = args.split(',');
         result = parts[0];
@@ -71,10 +71,6 @@ class LaboratoryApiService implements LaboratoryApiServiceInterface {
 
   totalIssuance = async (network: string) => {
     return (await this.httpClient.get(`/peer/total-issuance/${network}`)).data;
-  };
-
-  ddcMetrics = async () => {
-    return (await this.httpClient.get(`/peer/ddc-metrics`)).data;
   };
 }
 

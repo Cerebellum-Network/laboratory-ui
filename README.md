@@ -9,8 +9,9 @@ It provides the following features:
 This application depends on backend API, which can be found [here](https://github.com/Cerebellum-Network/laboratory-api).
 
 ## Release notes
+
 ### vNext
-*
+* Removed DDC metrics
 
 ### v1.7.0
 * Added support for chainbridge pallet method
