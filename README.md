@@ -14,7 +14,7 @@ This application depends on backend API, which can be found [here](https://githu
 * ...
 
 ### v1.9.0
-* Updated QAnet/Testnet urls
+* Updated QAnet/Testnet/Mainnet urls
 
 ### v1.8.0
 * Removed DDC metrics
