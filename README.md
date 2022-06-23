@@ -13,6 +13,9 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * ...
 
+### v1.9.1
+* Updated Devnet urls
+
 ### v1.9.0
 * Updated QAnet/Testnet/Mainnet urls
 
