@@ -15,8 +15,7 @@ const App = (props) => {
       <div className="min-vh-100">
         <Navbar bg="light">
           <Navbar.Brand>
-            <img alt="" src={logoImg} width="30" height="30" className="d-inline-block align-top" /> Cere Network
-            Laboratory
+            <img alt="" src={logoImg} width="30" height="30" className="d-inline-block align-top" /> Cere Laboratory
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
