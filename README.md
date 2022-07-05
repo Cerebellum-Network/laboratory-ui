@@ -13,7 +13,7 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * ...
 
-### vNext
+### v1.10.0
 * Updated title
 
 ### v1.9.1
