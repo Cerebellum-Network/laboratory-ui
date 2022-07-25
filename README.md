@@ -11,7 +11,7 @@ This application depends on backend API, which can be found [here](https://githu
 ## Release notes
 
 ### vNext
-* ...
+* Removed v2 subdomains from public urls
 
 ### v1.10.0
 * Updated title
