@@ -13,7 +13,7 @@ This application depends on backend API, which can be found [here](https://githu
 ### vNext
 * ...
 
-### v1.10.1
+### v1.11.0
 * Updated Cere Blockchain public URLs
 
 ### v1.10.0
